@@ -1,6 +1,6 @@
 /*MP1 Jims Donut Shop - Breanna Sproul - 28 Sept 2023
 Calculation of a customer's order in Jims Donut Shop
-Considers: price of donuts/fritter from given amount, sales tax, and change back*/
+Considers: price of donuts/fritter from given amount, correct sales tax, and change back*/
 
 #include <iostream>
 #include <iomanip>
@@ -65,7 +65,7 @@ int main(void) {
 	double change = customer_pay - final_order;
 
 	if (change == 0) {
-		cout << "Exact payment received - no change owed.";
+		cout << "Exact payment received - no changed owed.";
 	}
 	else { cout << fixed << setprecision(2) << "Change owed is: $" << change << " - "; }
 
@@ -92,7 +92,6 @@ int main(void) {
 	if ((changeEdit - ((dollar * 100) + (quarter * 25))) > 9) {
 		dime = (changeEdit - ((dollar * 100) + (quarter * 25))) / 9;
 		//cout << "dime check: " << dime << endl;
-		//had to change the /10 to a /9, but im not sure why it wouldnt work??
 	}
 	
 
@@ -103,7 +102,9 @@ int main(void) {
 
 	//penny
 	if (((changeEdit - ((dollar * 100) + (quarter * 25) + (dime * 10) + (nickel * 5)))) >= 1) {
-		penny = ((changeEdit - ((dollar * 100) + (quarter * 25) + (dime * 10) + (nickel * 5))) / 1);
+		penny = (((changeEdit - ((dollar * 100) + (quarter * 25) + (dime * 10) + (nickel * 5))) / 1.0));
+	}	if (penny >= 2) {
+		penny = penny + 1;
 	}
 
 	//outputting change with punctuation
